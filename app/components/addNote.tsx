@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 
-const addNote = () => {
+const AddNote = () => {
     const [wordCount, setWordCount] = useState<number>(0);
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -15,31 +15,24 @@ const addNote = () => {
             return;
         }
 
-        setWordCount(wordLimit); 
+        setWordCount(words.length);
     };
 
     return (
-        <div style={{ textAlign: 'left'}}>
-            <textarea
-                style={{
-                    width: '300px',
-                    height: '100px',
-                    border: '1px solid #ccc',
-                    borderRadius: '4px',
-                    padding: '10px',
-                    position: 'fixed',
-                    left: '50%',
-                    top: '50%',
-
-                }}
-                onChange={handleChange}
-                placeholder="Tell us about your day..."
-            ></textarea>
-            <div style={{ marginTop: '10px', fontSize: '16px' }}>
-                Word Count: {wordCount}
+        <div className="flex items-center justify-center min-h-screen">
+            <div className="text-left">
+                <textarea
+                    className="w-72 h-24 border border-gray-300 pt-3 pb-3"
+                    onChange={handleChange}
+                    placeholder="Tell us about your day..."
+                ></textarea>
+                <div className="mt-2 text-lg">
+                    Word Count: {wordCount}
+                </div>
             </div>
         </div>
     );
 };
 
-export default addNote;
+export default AddNote;
+
