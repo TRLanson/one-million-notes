@@ -12,8 +12,10 @@ type ExtraProps = {
     columnCount: number,
 }
 
+const colorArray = ["#FFF68D", "#F79FD4", "#C59AF0", "#80E5FF", "#8FFFF0"];
+
 const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) => {
-    const { notes, columnCount, handleNoteClick, selectedNote } = data;
+    const { notes, columnCount, handleNoteClick, selectedNote, setSelectedNoteColor } = data;
 
     const index = rowIndex * columnCount + columnIndex;
     const noteData = notes[index];
@@ -21,14 +23,24 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
     const randomRotation = useMemo(() => Math.random() * 60 - 30, []);
     const randomXOffset = useMemo(() => Math.random() * 50 - 25, []);
     const randomYOffset = useMemo(() => Math.random() * 50 - 25, []);
+    const randomColor = useMemo(() => {
+        const randomIndex = Math.floor(Math.random() * colorArray.length);
+        return colorArray[randomIndex];
+      }, []);
 
     const noteId = noteData?.id ?? index.toString();    
+
+    const handleClick = () => {
+        handleNoteClick(noteId);
+        setSelectedNoteColor(randomColor);
+    };
 
     return (
         <div
             style={{
                 ...style,
                 transform: `translate(${randomXOffset}px, ${randomYOffset}px) rotate(${randomRotation}deg)`,
+
             }}
         >
 
@@ -36,13 +48,19 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
                  <StickyNote
                  message={notes[rowIndex * columnCount + columnIndex].note}
                  noteId={noteId}
-                 onClick={() => handleNoteClick(noteId)}
+                 onClick={handleClick}
+                 style={{
+                    backgroundColor: randomColor,
+                }}
                 />  
                 :
                 <StickyNote
                 message={""}
                 noteId={noteId}
-                onClick={() => handleNoteClick(noteId)}
+                onClick={handleClick}
+                style={{
+                    backgroundColor: randomColor,
+                }}
             />  
             }
 
@@ -56,7 +74,7 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
 const StickyGrid = ({ notes }: DocumentData) => {
 
     const [selectedNote, setSelectedNote] = useState<string | null>(null);
-
+    const [selectedNoteColor, setSelectedNoteColor] = useState<string>("");
 
     const handleNoteClick = (noteId: string) => {
         if (selectedNote && selectedNote !== noteId) { //ignore clicks if it is from the same note
@@ -93,6 +111,7 @@ const StickyGrid = ({ notes }: DocumentData) => {
                   columnCount,
                   handleNoteClick,
                   selectedNote,
+                  setSelectedNoteColor,
                 }}
               >
                 {Cell}
@@ -102,6 +121,7 @@ const StickyGrid = ({ notes }: DocumentData) => {
                 <StickyDetails
                   noteId={selectedNote}
                   onClose={handleClose}
+                  color={selectedNoteColor}
                 />
               )}
             </>
