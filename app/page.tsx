@@ -1,6 +1,6 @@
 "use client";
 
-import { collection, DocumentData, getDocs } from "firebase/firestore";
+import { collection, DocumentData, getDocs, doc, onSnapshot } from "firebase/firestore";
 
 import { db } from "./components/Firebase";
 
@@ -25,16 +25,24 @@ export default function Home() {
     setNotes(notesList);
   }
 
+  const fetchNotesLive = async () => {
+    const notesCollection = collection(db, 'StickyNotes');
+    const notesSnapshot = onSnapshot(notesCollection, (snapshot) => {
+      const notesList = snapshot.docs.map(doc => doc.data());
+      setNotes(notesList);
+    });
+  }
+
   useEffect(() => {
-    fetchNotes();
+    fetchNotesLive();
   }, [])
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen">
       {
         notes.length >= 0 &&
-        <Board notes={notes}/>
+        <Board notes={notes} />
       }
-
+    </div>
   );
 }

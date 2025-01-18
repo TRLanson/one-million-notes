@@ -18,6 +18,16 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
   const notes = data[0];
   const columnCount = data[1];
 
+  let message = '';
+
+  if (notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) {
+    message = notes[rowIndex * columnCount + columnIndex].note;
+    if (message.length >= 100) {
+      message = message.slice(0, 100) + "...";
+    }
+  }
+
+
   return (
     <div
       style={{
@@ -26,11 +36,7 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
       }}
     >
 
-      {(notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) ?
-        <StickyNote message={notes[rowIndex * columnCount + columnIndex].note} />
-        :
-        <StickyNote message={''} />
-      }
+        <StickyNote message={message} />
 
     </div>
   );
