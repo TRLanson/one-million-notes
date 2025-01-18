@@ -15,3 +15,4 @@ const StickyNote = ({message} : StickyNotesProp) => {
 };
 
 export default StickyNote;
+

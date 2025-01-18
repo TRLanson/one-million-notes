@@ -35,7 +35,6 @@ export default function Home() {
         notes.length >= 0 &&
         <Board notes={notes}/>
       }
-    </div>
 
   );
 }
