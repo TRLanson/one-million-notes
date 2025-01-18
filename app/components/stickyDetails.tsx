@@ -2,20 +2,29 @@
 
 import { createPortal } from "react-dom";
 
-const StickyDetails = () => {
-  return createPortal( // render it ouside the dom so it doesnt get covered 
+type StickyDetailsProps = {
+  noteId: string;
+  onClose: () => void;
+};
+
+const StickyDetails = ({ noteId, onClose }: StickyDetailsProps) => {
+
+  return createPortal(
     <div
       className="z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
                  w-[min(80vw,80vh)] h-[min(80vw,80vh)] bg-yellow-100 border-2 border-black rounded-lg 
                  shadow-[10px_10px_0_rgba(0,0,0,0.5)] text-black p-6"
     >
-      <h2 className="text-xl font-bold mb-2">Anonymous</h2>
-      <p className="text-lg mb-1">18 years old</p>
-      <p className="text-lg mb-4">Toronto, ON</p>
+      <button
+        onClick={onClose}
+        className="absolute top-2 right-2 text-black font-bold text-2xl"
+      >
+        X
+      </button>
+
+      <h2 className="text-xl font-bold mb-2">Note ID: {noteId}</h2>
       <p className="text-base leading-relaxed">
-        Contrary to popular belief, Lorem Ipsum is not simply random text.
-        It has roots in a piece of classical Latin literature from 45 BC,
-        making it over 2000 years old
+        today i ate a sandwhich, and went to tim hortons to get coffeee, but then it started raining.
       </p>
     </div>,
     document.body
