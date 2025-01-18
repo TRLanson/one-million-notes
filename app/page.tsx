@@ -7,8 +7,6 @@ export default function Home() {
   return (
     <div>
       <StickyGrid/>
-      <StickyNote/>
-      <TextBox/>
     </div>
   );
 }
