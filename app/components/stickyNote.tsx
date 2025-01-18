@@ -1,3 +1,5 @@
+import { Inter } from "next/font/google";
+
 import { useState } from "react";
 import { useContext } from 'react';
 import StickyDetails from "./stickyDetails";
@@ -7,6 +9,8 @@ type StickyNotesProp = {
     noteId: string;
     onClick: () => void;
 };
+
+const inter = Inter({ weight: "400" })
 
 const StickyNote = ({ message, noteId, onClick }: StickyNotesProp) => {
     return (
@@ -18,6 +22,7 @@ const StickyNote = ({ message, noteId, onClick }: StickyNotesProp) => {
             {message}
         </div>
     );
+
 };
 
 export default StickyNote;

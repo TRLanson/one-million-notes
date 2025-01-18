@@ -18,11 +18,22 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
     const index = rowIndex * columnCount + columnIndex;
     const noteData = notes[index];
 
+ 
+
     const randomRotation = useMemo(() => Math.random() * 60 - 30, []);
     const randomXOffset = useMemo(() => Math.random() * 50 - 25, []);
     const randomYOffset = useMemo(() => Math.random() * 50 - 25, []);
 
     const noteId = noteData?.id ?? index.toString();    
+  
+   let message = '';
+
+  if (notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) {
+    message = notes[rowIndex * columnCount + columnIndex].note;
+    if (message.length >= 100) {
+      message = message.slice(0, 100) + "...";
+    }
+  }
 
     return (
         <div
@@ -32,19 +43,12 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
             }}
         >
 
-            {(notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) ?
+          
                  <StickyNote
-                 message={notes[rowIndex * columnCount + columnIndex].note}
+                 message={message}
                  noteId={noteId}
                  onClick={() => handleNoteClick(noteId)}
-                />  
-                :
-                <StickyNote
-                message={""}
-                noteId={noteId}
-                onClick={() => handleNoteClick(noteId)}
-            />  
-            }
+
 
              
 
