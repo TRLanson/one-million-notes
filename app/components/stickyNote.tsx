@@ -1,9 +1,12 @@
-const StickyNote = () => {
-    return (
-        <div
-            className="bg-yellow-100 w-48 h-48 border-1 rounded-lg shadow-lg text-white">
-        </div>
-    );
-};
+    interface StickyNoteProps {
+        style?: React.CSSProperties;
+    }
 
-export default StickyNote;
+    const StickyNote = () => {
+        return (
+            <div className="bg-yellow-100 w-48 h-48 border-2 border-black rounded-lg shadow-lg text-white bl-shadow">
+            </div>
+        );
+    };
+
+    export default StickyNote;
