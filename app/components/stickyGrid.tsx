@@ -7,8 +7,8 @@ import StickyNote from "./stickyNote";
 
 const Cell = ({ columnIndex, rowIndex, style }: GridChildComponentProps) => {
     const randomRotation = useMemo(() => Math.random() * 60 - 30, []); 
-    const randomXOffset = useMemo(() => Math.random() * 50 - 25, []); 
-    const randomYOffset = useMemo(() => Math.random() * 50 - 25, []); 
+    const randomXOffset = useMemo(() => Math.random() * 100 - 50, []); 
+    const randomYOffset = useMemo(() => Math.random() * 100 - 50, []); 
 
     return (
         <div
