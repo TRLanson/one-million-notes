@@ -1,53 +1,22 @@
 import React from 'react';
 
 const MenuBar: React.FC = () => {
-    const styles = {
-        menuBar: {
-            backgroundColor: '#333',
-            color: 'white',
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '0.5rem 1rem',
-            position: 'fixed',
-            top: 0,
-            width: '100%',
-            zIndex: 1000,
-        } as React.CSSProperties,
-        menuItems: {
-            listStyle: 'none',
-            margin: 0,
-            padding: 0,
-            display: 'flex',
-        } as React.CSSProperties,
-        menuItem: {
-            marginRight: '1rem',
-        } as React.CSSProperties,
-        link: {
-            color: 'white',
-            textDecoration: 'none',
-            fontWeight: 'bold',
-        } as React.CSSProperties,
-        linkHover: {
-            textDecoration: 'underline',
-        },
-    };
-
     return (
-        <nav style={styles.menuBar}>
-            <ul style={styles.menuItems}>
-                <li style={styles.menuItem}>
-                    <a href="/home" style={styles.link}>
-                        Home
+        <nav className=" text-black top-0 w-[95vw] z-50 rounded-lg mb-[-15px]">
+            <ul className="list-none m-0 p-0 flex justify-around">
+                <li className="flex-1 text-center">
+                    <a href="/home" className="block py-5 font-bold">
+                        
                     </a>
                 </li>
-                <li style={styles.menuItem}>
-                    <a href="/about" style={styles.link}>
-                        Our Story
+                <li className="flex-1 text-center ">
+                    <a href="/about" className="block py-5 font-bold text-6xl whitespace-nowrap">
+                        ONE MILLION NOTES
                     </a>
                 </li>
-                <li style={styles.menuItem}>
-                    <a href="/contact" style={styles.link}>
-                        Contact
+                <li className="flex-1 text-center">
+                    <a href="/contact" className="block py-5 font-bold">
+                        
                     </a>
                 </li>
             </ul>

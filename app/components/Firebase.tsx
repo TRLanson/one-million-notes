@@ -9,8 +9,9 @@ const config = {
   messagingSenderID: process.env.MESSAGINGSENDERID,
   appId: process.env.APPID,
   measurementID: process.env.MEASUREMENTID,
-
 }
+
+console.log(config);
 
 const app = initializeApp(config);
 
