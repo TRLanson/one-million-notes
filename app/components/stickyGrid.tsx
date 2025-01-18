@@ -1,31 +1,50 @@
+"use client";
+
+import { useMemo } from "react";
+import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 import StickyNote from "./stickyNote";
 
-const StickyGrid = () => {
-    const notes = Array.from({ length: 1000 }, (_, index) => {
-        const randomX = Math.random() * 300; // 0% to 90%
-        const randomY = Math.random() * 300; // 0% to 90%
-        const randomRotation = Math.random() * 30 - 15; // -15deg to +15deg
-
-        return (
-            <div
-                key={index}
-                style={{
-                    position: "absolute",
-                    left: "${randomX}%",
-                    top: "${randomY}%",
-                    transform: "rotate(${randomRotation}deg)", 
-                }}
-            >
-                <StickyNote />
-            </div>
-        );
-    });
+const Cell = ({ columnIndex, rowIndex, style }: GridChildComponentProps) => {
+    const randomRotation = useMemo(() => Math.random() * 60 - 30, []); 
+    const randomXOffset = useMemo(() => Math.random() * 50 - 25, []); 
+    const randomYOffset = useMemo(() => Math.random() * 50 - 25, []); 
 
     return (
-        <div className="relative h-screen w-screen"
-            
+        <div
+            style={{
+                ...style,
+                transform: `translate(${randomXOffset}px, ${randomYOffset}px) rotate(${randomRotation}deg)`,
+            }}
         >
-            {notes}
+            <StickyNote />
+        </div>
+    );
+};
+
+const StickyGrid = () => {
+    
+    return (
+        <div className="w-screen h-screen">
+            <AutoSizer>
+                {({ width, height }) => {
+                    const cellSize = 160;
+                    const columnCount = Math.floor(width / cellSize);
+
+                    return (
+                        <Grid
+                            columnCount={columnCount}
+                            rowCount={1000}
+                            columnWidth={150}
+                            rowHeight={150}
+                            width={width}
+                            height={height}
+                        >
+                            {Cell}
+                        </Grid>
+                    );
+                }}
+            </AutoSizer>
         </div>
     );
 };
