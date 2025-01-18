@@ -27,18 +27,23 @@ const StickyGrid = () => {
     return (
         <div className="w-screen h-screen">
             <AutoSizer>
-                {({ width, height }) => (
-                    <Grid
-                        columnCount={20}
-                        rowCount={20}
-                        columnWidth={150}
-                        rowHeight={150}
-                        width={width}
-                        height={height}
-                    >
-                        {Cell}
-                    </Grid>
-                )}
+                {({ width, height }) => {
+                    const cellSize = 160;
+                    const columnCount = Math.floor(width / cellSize);
+
+                    return (
+                        <Grid
+                            columnCount={columnCount}
+                            rowCount={1000}
+                            columnWidth={150}
+                            rowHeight={150}
+                            width={width}
+                            height={height}
+                        >
+                            {Cell}
+                        </Grid>
+                    );
+                }}
             </AutoSizer>
         </div>
     );
