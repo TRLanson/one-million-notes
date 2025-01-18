@@ -18,6 +18,8 @@ const MenuBar: React.FC = () => {
             margin: 0,
             padding: 0,
             display: 'flex',
+            justifyContent: 'space-around',
+            width: '100%',
         } as React.CSSProperties,
         menuItem: {
             marginRight: '1rem',
