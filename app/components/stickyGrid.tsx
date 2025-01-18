@@ -17,7 +17,7 @@ const Cell = ({ columnIndex, rowIndex, style }: GridChildComponentProps) => {
                 transform: `translate(${randomXOffset}px, ${randomYOffset}px) rotate(${randomRotation}deg)`,
             }}
         >
-            <StickyNote />
+            <StickyNote/>
         </div>
     );
 };

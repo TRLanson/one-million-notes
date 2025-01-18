@@ -1,21 +1,21 @@
 import { useState } from "react";
+import { useContext } from 'react';
 import StickyDetails from "./stickyDetails";
 
 interface StickyNoteProps {
     style?: React.CSSProperties;
 }
 
-const StickyNote = () => {
-    const [showDetails, setShowDetails] = useState(false);
+const StickyNote = ({ style }: StickyNoteProps) => {
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
-        setShowDetails(!showDetails);
+        setIsOpen(!isOpen);
     };
 
     return (
-        <div className="z-0 bg-yellow-100 w-48 h-48 border-2 border-black rounded-lg shadow-2xl text-black" onClick={handleClick}>
-            {showDetails &&  <StickyDetails/>}
-
+        <div className="bg-yellow-100 w-48 h-48 border-2 border-black rounded-lg shadow-2xl text-black" style={style} onClick={handleClick}>
+            {isOpen && <StickyDetails />}
         </div>
     );
 };
