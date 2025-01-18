@@ -48,6 +48,7 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
                  message={message}
                  noteId={noteId}
                  onClick={() => handleNoteClick(noteId)}
+                 />
 
 
              
