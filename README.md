@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OneMillionNotes
 
-## Getting Started
+OneMillionNotes is a platform designed to host a million shared notes, connecting people globally through each other's short moments in life. It empowers users to capture and share their thoughts, experiences, and insights, creating a tapestry of perspectives that transcends borders. By making these moments accessible to everyone, OneMillionNotes aims to inspire curiosity, foster connection, and celebrate the shared human experience.
 
-First, run the development server:
+## Vision
+Our vision is to create a dynamic, collaborative space where:
+- **Knowledge** is freely shared.
+- **Experiences** connect individuals worldwide.
+- **Creativity and learning** thrive through the collective insights of a global community.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
+- **Global Sharing:** A platform to share notes and experiences with people around the world.
+- **Personal Moments:** A space to capture and contribute meaningful snippets from everyday life.
+- **Collaborative Growth:** An ever-expanding resource built by contributions from diverse voices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Goals
+- **Reach One Million Notes:** Create a rich repository of shared experiences and ideas.
+- **Foster Global Connections:** Build a community united by curiosity and understanding.
+- **Inspire and Educate:** Encourage creativity, learning, and innovation through shared insights.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Get Involved
+Join us in creating a platform that celebrates humanity's shared moments and collective wisdom.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Together, let's turn everyday moments into a global movement of connection and understanding.

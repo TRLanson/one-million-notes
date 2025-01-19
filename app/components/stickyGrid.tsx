@@ -54,8 +54,8 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
   if (notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) {
     try {
       message = notes[rowIndex * columnCount + columnIndex].note;
-      if (message.length >= 100) {
-        message = message.slice(0, 100) + "...";
+      if (message.length >= 80) {
+        message = message.slice(0, 80) + "...";
       }
     }
     catch {
@@ -147,6 +147,7 @@ const StickyGrid = ({ notes }: DocumentData) => {
                   color={selectedNoteColor}
                   font={selectedNoteFont}
                   data={note}
+                  length={notes.length}
                 />
               )}
             </>

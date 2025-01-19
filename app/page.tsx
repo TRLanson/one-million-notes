@@ -1,6 +1,6 @@
 "use client";
 
-import { collection, DocumentData, onSnapshot } from "firebase/firestore";
+import { collection, DocumentData, onSnapshot, orderBy, query} from "firebase/firestore";
 
 import { db } from "./components/Firebase";
 
@@ -15,7 +15,8 @@ export default function Home() {
 
   const fetchNotesLive = async () => {
     const notesCollection = collection(db, 'StickyNotes');
-    onSnapshot(notesCollection, (snapshot) => {
+    const q = query(notesCollection, orderBy("order"));
+    onSnapshot(q, (snapshot) => {
       const notesList = snapshot.docs.map(doc => doc.data());
       setNotes(notesList);
     });
