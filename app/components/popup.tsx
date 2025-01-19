@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ weight: "400", subsets: ['latin'] });
 
-export default function Popup({ message }: { message: String }) {
+export default function Popup({ message }: { message: string }) {
 
 
 return (

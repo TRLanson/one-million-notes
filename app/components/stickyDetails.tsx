@@ -21,10 +21,10 @@ const StickyDetails = ({ noteId, onClose, color, font, data, length }: StickyDet
 
   const textRef = useRef<HTMLTextAreaElement>(null);
 
-  const [popUp, setPopup] = useState<Boolean>(false);
-  const [message, setMessage] = useState<String>("");
+  const [popUp, setPopup] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
 
-  const badText = (message: String) => {
+  const badText = (message: string) => {
     setMessage(message);
     setPopup(true);
 
