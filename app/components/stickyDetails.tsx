@@ -1,6 +1,11 @@
 "use client";
 
+
 import { createPortal } from "react-dom";
+import { useState, useRef } from "react";
+
+import { db } from "./Firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 type StickyDetailsProps = {
   noteId: string;
@@ -11,6 +16,24 @@ type StickyDetailsProps = {
 };
 
 const StickyDetails = ({ noteId, onClose, color, font, data }: StickyDetailsProps) => {
+
+  const textRef = useRef<HTMLTextAreaElement>(null);
+
+  const addNote = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      if (textRef.current && textRef.current.value) {
+        onClose();
+        const docRef = await addDoc(collection(db, "StickyNotes"), {
+          note: textRef.current.value,
+        })
+      }
+    }
+    catch (e) {
+      console.log("Error adding Note", e);
+    }
+  }
 
   return createPortal(
     <div
@@ -26,10 +49,22 @@ const StickyDetails = ({ noteId, onClose, color, font, data }: StickyDetailsProp
         X
       </button>
 
-      <h2 className="text-xl font-bold mb-4">Note ID: {noteId}</h2>
-      <p className="text-base leading-relaxed">
-        {data}
-      </p>
+      <h2 className="text-xl font-bold mb-2">Note ID: {noteId}</h2>
+      {data != "" ?
+
+        <p className="leading-relaxed text-xl">
+          {data}
+        </p>
+        :
+        <div className="w-full h-full flex flex-col items-center">
+          <textarea ref={textRef} style={{ backgroundColor: color }} className="text-wrap w-full h-5/6 align-text-top focus:outline-none placeholder-gray-800 text-2xl" placeholder={"Enter Text"} />
+          <button onClick={addNote} style={{ backgroundColor: color }} className="w-1/4 h-20 border-2 border-black rounded-lg text-3xl">
+            Submit
+          </ button>
+        </ div>
+
+      }
+
     </div>,
     document.body
   );
