@@ -33,6 +33,24 @@ const StickyDetails = ({ noteId, onClose, color, font, data, length }: StickyDet
     }, 3000)
   }
 
+  const moderateMessage = async (message: string): Promise<boolean> => {
+    try {
+      const response = await fetch("/api/moderateMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: message })
+      });
+      const result = await response.json();
+      console.log(result)
+      return result.output.trim() === "true";
+    } catch (error) {
+      console.error("Error moderating message:", error);
+      return false;
+    }
+  };
+
   const addNote = async (e: SyntheticEvent) => {
     e.preventDefault();
 
@@ -42,11 +60,17 @@ const StickyDetails = ({ noteId, onClose, color, font, data, length }: StickyDet
           badText("Text must be at least 50 characters and at most 300 characters.")
         }
         else {
-          onClose();
-          await addDoc(collection(db, "StickyNotes"), {
-            note: textRef.current.value,
-            order: length + 1
-          })
+          const isSafe = await moderateMessage(textRef.current.value);
+
+          if (!isSafe) {
+            badText("Message contains inappropriate content.");
+          } else {
+            onClose();
+            await addDoc(collection(db, "StickyNotes"), {
+              note: textRef.current.value,
+              order: length + 1
+            });
+          }
         }
       }
     }
