@@ -2,10 +2,11 @@
 
 
 import { createPortal } from "react-dom";
-import { SyntheticEvent, useRef } from "react";
+import { SyntheticEvent, useRef, useState } from "react";
 
 import { db } from "./Firebase";
 import { addDoc, collection } from "firebase/firestore";
+import Popup from "./popup";
 
 type StickyDetailsProps = {
   noteId: string;
@@ -13,21 +14,40 @@ type StickyDetailsProps = {
   color: string;
   font: string;
   data: string;
+  length: number
 };
 
-const StickyDetails = ({ noteId, onClose, color, font, data }: StickyDetailsProps) => {
+const StickyDetails = ({ noteId, onClose, color, font, data, length }: StickyDetailsProps) => {
 
   const textRef = useRef<HTMLTextAreaElement>(null);
+
+  const [popUp, setPopup] = useState<Boolean>(false);
+  const [message, setMessage] = useState<String>("");
+
+  const badText = (message: String) => {
+    setMessage(message);
+    setPopup(true);
+
+    setTimeout(() => {
+      setPopup(false);
+    }, 3000)
+  }
 
   const addNote = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     try {
       if (textRef.current && textRef.current.value) {
-        onClose();
-        await addDoc(collection(db, "StickyNotes"), {
-          note: textRef.current.value,
-        })
+        if (textRef.current.value.length < 50 || textRef.current.value.length > 300) {
+          badText("Text must be at least 50 characters and at most 300 characters.")
+        }
+        else {
+          onClose();
+          await addDoc(collection(db, "StickyNotes"), {
+            note: textRef.current.value,
+            order: length + 1
+          })
+        }
       }
     }
     catch (e) {
@@ -62,8 +82,13 @@ const StickyDetails = ({ noteId, onClose, color, font, data }: StickyDetailsProp
             Submit
           </ button>
         </ div>
-
       }
+
+      {
+        popUp &&
+        <Popup message={message} />
+      }
+
 
     </div>,
     document.body
