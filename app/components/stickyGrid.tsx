@@ -23,8 +23,8 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
  
 
     const randomRotation = useMemo(() => Math.random() * 60 - 30, []);
-    const randomXOffset = useMemo(() => Math.random() * 50 - 25, []);
-    const randomYOffset = useMemo(() => Math.random() * 50 - 25, []);
+    const randomXOffset = useMemo(() => Math.random() * 100 - 25, []);
+    const randomYOffset = useMemo(() => Math.random() * 100 - 25, []);
     const randomColor = useMemo(() => {
         const randomIndex = Math.floor(Math.random() * colorArray.length);
         return colorArray[randomIndex];
