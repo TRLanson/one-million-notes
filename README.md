@@ -1,6 +1,6 @@
 # OneMillionNotes 📓
 
-OneMillionNotes is a platform designed to host a million shared notes, connecting people globally through each other's short moments in life. It empowers users to capture and share their unaltered thoughts, experiences, and insights, creating a tapestry of perspectives that transcends borders. By making these moments accessible to everyone, OneMillionNotes aims to inspire empathyy, foster connection, and celebrate the shared human experience.
+OneMillionNotes is a platform designed to host a million shared notes, connecting people globally through each other's short moments in life. It empowers users to capture and share their unaltered thoughts, experiences, and insights, creating a tapestry of perspectives that transcends borders. By making these moments accessible to everyone, OneMillionNotes aims to inspire empathy, foster connection, and celebrate the shared human experience.
 
 ## Vision 🔍
 Our vision is to create a dynamic, collaborative space where:
@@ -13,7 +13,7 @@ Our vision is to create a dynamic, collaborative space where:
 - **Personal Moments:** A space to capture and contribute meaningful snippets from everyday life.
 - **Collaborative Growth:** An ever-expanding resource built by contributions from diverse voices.
 
-## Goals
+## Goals 🥅
 - **Reach One Million Notes:** Create a rich repository of shared experiences and ideas.
 - **Foster Global Connections:** Build a community united by curiosity and understanding.
 - **Inspire and Educate:** Encourage creativity, learning, and innovation through shared insights.
@@ -41,4 +41,4 @@ Our vision is to create a dynamic, collaborative space where:
 - Vercel
   - Provides one-click deployment for Next.js, ensuring quick and reliable hosting. 
 
-Together, let's open our perspectives and turn everyday moments into a global movement of connection and understanding.
+**Together, let's open our perspectives and turn everyday moments into a global movement of connection and understanding.**
