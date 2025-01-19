@@ -6,9 +6,11 @@ type StickyDetailsProps = {
   noteId: string;
   onClose: () => void;
   color: string;
+  data: string;
 };
 
-const StickyDetails = ({ noteId, onClose, color }: StickyDetailsProps) => {
+
+const StickyDetails = ({ noteId, onClose, color, data }: StickyDetailsProps) => {
 
   return createPortal(
     <div
@@ -26,7 +28,7 @@ const StickyDetails = ({ noteId, onClose, color }: StickyDetailsProps) => {
 
       <h2 className="text-xl font-bold mb-2">Note ID: {noteId}</h2>
       <p className="text-base leading-relaxed">
-        today i ate a sandwhich, and went to tim hortons to get coffeee, but then it started raining.
+        {data}
       </p>
     </div>,
     document.body

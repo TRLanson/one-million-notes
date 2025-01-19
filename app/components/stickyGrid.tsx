@@ -9,18 +9,18 @@ import { DocumentData } from "firebase/firestore";
 import StickyDetails from "./stickyDetails";
 
 type ExtraProps = {
-    columnCount: number,
+  columnCount: number,
 }
 
 const colorArray = ["#FFF68D", "#F79FD4", "#C59AF0", "#80E5FF", "#8FFFF0"];
 
 const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) => {
-    const { notes, columnCount, handleNoteClick, selectedNote, setSelectedNoteColor } = data;
+  const { notes, columnCount, handleNoteClick, selectedNote, setSelectedNoteColor } = data;
 
-    const index = rowIndex * columnCount + columnIndex;
-    const noteData = notes[index];
+  const index = rowIndex * columnCount + columnIndex;
+  const noteData = notes[index];
 
- 
+
 
     const randomRotation = useMemo(() => Math.random() * 60 - 30, []);
     const randomXOffset = useMemo(() => Math.random() * 100 - 25, []);
@@ -30,9 +30,12 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
         return colorArray[randomIndex];
       }, []);
 
-    const noteId = noteData?.id ?? index.toString();    
-  
-   let message = '';
+
+
+
+  const noteId = noteData?.id ?? index.toString();
+
+  let message = '';
 
   if (notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) {
     message = notes[rowIndex * columnCount + columnIndex].note;
@@ -41,67 +44,56 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
     }
   }
 
-    const handleClick = () => {
-        handleNoteClick(noteId);
-        setSelectedNoteColor(randomColor);
-    };
+  const handleClick = () => {
+    handleNoteClick(noteId);
+    setSelectedNoteColor(randomColor);
+  };
 
-    return (
-        <div
-            style={{
-                ...style,
-                transform: `translate(${randomXOffset}px, ${randomYOffset}px) rotate(${randomRotation}deg)`,
+  return (
+    <div
+      style={{
+        ...style,
+        transform: `translate(${randomXOffset}px, ${randomYOffset}px) rotate(${randomRotation}deg)`,
 
-            }}
-        >
-
-          
-                 <StickyNote
-                 message={message}
-                 noteId={noteId}
-
-                 onClick={handleClick}
-                 style={{
-                    backgroundColor: randomColor,
-                }}
-                />  
-                :
-                <StickyNote
-                message={""}
-                noteId={noteId}
-                onClick={handleClick}
-                style={{
-                    backgroundColor: randomColor,
-                }}
-            />  
-            
-
-
-             
-
-        </div>
-    );
+      }}
+    >
+      <StickyNote
+        message={message}
+        noteId={noteId}
+        onClick={() => handleClick()}
+        style={{
+          backgroundColor: randomColor,
+        }}
+      />
+    </div>
+  );
 
 };
 
 const StickyGrid = ({ notes }: DocumentData) => {
 
-    const [selectedNote, setSelectedNote] = useState<string | null>(null);
-    const [selectedNoteColor, setSelectedNoteColor] = useState<string>("");
+  const [selectedNote, setSelectedNote] = useState<string | null>(null);
+  const [selectedNoteColor, setSelectedNoteColor] = useState<string>("");
 
-    const handleNoteClick = (noteId: string) => {
-        if (selectedNote && selectedNote !== noteId) { //ignore clicks if it is from the same note
-            return;
-        }
-        
-        
-        setSelectedNote((prev) => (prev === noteId ? null : noteId));
-    };
+  const handleNoteClick = (noteId: string) => {
+    if (selectedNote && selectedNote !== noteId) { //ignore clicks if it is from the same note
+      return;
+    }
 
-    //close note from x
+
+    setSelectedNote((prev) => (prev === noteId ? null : noteId));
+  };
+
+  //close note from x
   const handleClose = () => {
     setSelectedNote(null);
   };
+
+  let note = "";
+  if (Number(selectedNote) < notes.length) {
+    note = notes[Number(selectedNote)].note;
+  }
+
 
   return (
     <div className="w-screen h-screen">
@@ -114,7 +106,7 @@ const StickyGrid = ({ notes }: DocumentData) => {
             <>
               <Grid
                 columnCount={columnCount}
-                rowCount={1000}
+                rowCount={90909}
                 columnWidth={160}
                 rowHeight={160}
                 width={width}
@@ -135,6 +127,7 @@ const StickyGrid = ({ notes }: DocumentData) => {
                   noteId={selectedNote}
                   onClose={handleClose}
                   color={selectedNoteColor}
+                  data={note}
                 />
               )}
             </>
