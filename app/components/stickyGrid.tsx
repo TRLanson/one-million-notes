@@ -51,7 +51,12 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
   let message = '';
 
   if (notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) {
-    message = notes[rowIndex * columnCount + columnIndex].note;
+    try {
+      message = notes[rowIndex * columnCount + columnIndex].note;
+    }
+    catch {
+      console.log("Error getting Note")
+    }
     if (message.length >= 100) {
       message = message.slice(0, 100) + "...";
     }
