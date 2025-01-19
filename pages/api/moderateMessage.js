@@ -8,7 +8,7 @@ export default async function handler(req, res) {
       const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
       
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      const prompt = "return false if the following text is CLEARLY hurtful/harmful/discriminatory to others, otherwise return true" + text;
+      const prompt = "return false if the following text is CLEARLY hurtful/harmful/discriminatory to others or if it contains a link to another website, otherwise return true" + text;
 
       const result = await model.generateContent(prompt);
       const response = result.response;
