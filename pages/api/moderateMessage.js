@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default async function handler(req, res) {
@@ -12,8 +11,8 @@ export default async function handler(req, res) {
       const prompt = "return false if the following text is CLEARLY hurtful/harmful/discriminatory to others, otherwise return true" + text;
 
       const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const output = await response.text();
+      const response = result.response;
+      const output = response.text();
 
       res.status(200).json({ output });
     } catch (error) {
