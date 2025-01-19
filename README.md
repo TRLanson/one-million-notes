@@ -9,9 +9,9 @@ Our vision is to create a dynamic, collaborative space where:
 - **Creativity and learning** thrive through the collective insights of a global community.
 
 ## Key Features 🔑
-- **Global Sharing:** A platform to share notes and experiences with people around the world.
+- **Global Real Time Sharing:** A platform to share notes and experiences with people around the world instantly.
 - **Personal Moments:** A space to capture and contribute meaningful snippets from everyday life.
-- **Collaborative Growth:** An ever-expanding resource built by contributions from diverse voices.
+- **GenAI Moderation:** Powered by Gemini, posts are moderated for malicious intent before they are posted.
 
 ## Goals 🥅
 - **Reach One Million Notes:** Create a rich repository of shared experiences and ideas.
