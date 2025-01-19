@@ -2,7 +2,7 @@
 
 
 import { createPortal } from "react-dom";
-import { useState, useRef } from "react";
+import { SyntheticEvent, useRef } from "react";
 
 import { db } from "./Firebase";
 import { addDoc, collection } from "firebase/firestore";
@@ -19,13 +19,13 @@ const StickyDetails = ({ noteId, onClose, color, font, data }: StickyDetailsProp
 
   const textRef = useRef<HTMLTextAreaElement>(null);
 
-  const addNote = async (e: any) => {
+  const addNote = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     try {
       if (textRef.current && textRef.current.value) {
         onClose();
-        const docRef = await addDoc(collection(db, "StickyNotes"), {
+        await addDoc(collection(db, "StickyNotes"), {
           note: textRef.current.value,
         })
       }
