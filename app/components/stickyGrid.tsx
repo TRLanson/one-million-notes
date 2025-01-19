@@ -57,7 +57,10 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
       <StickyNote
         message={message}
         noteId={noteId}
-        onClick={() => handleNoteClick(noteId)}
+        onClick={() => handleClick()}
+        style={{
+          backgroundColor: randomColor,
+        }}
       />
     </div>
   );
