@@ -2,6 +2,29 @@
 
 OneMillionNotes is a platform designed to host a million shared notes, connecting people globally through each other's short moments in life. It empowers users to capture and share their thoughts, experiences, and insights, creating a tapestry of perspectives that transcends borders. By making these moments accessible to everyone, OneMillionNotes aims to inspire empathyy, foster connection, and celebrate the shared human experience.
 
+## Technologies Used 💻
+**Frontend:**
+- Next.js (TypeScript)
+  - Fast server-side rendering for optimal performance and improved SEO.
+- Tailwind CSS
+  - Utility-first framework for rapid, consistent styling.
+- React Hooks/portals
+  - Hooks: Streamline state management and lifecycle logic, making components more maintainable and testable.
+  - Portals: Render UI elements outside their parent component’s DOM hierarchy, enabling more flexible layouts and overlay features.
+
+**Database & Backend:**
+- Firebase Firestore
+  - Real-time NoSQL database for storing and syncing notes seamlessly.
+- Node.js
+  - Runs the Next.js server and handles server-side logic.
+- Performance
+  - react-window
+    - Efficient rendering of large lists by only loading visible items.
+
+**Deployment**:
+- Vercel
+  - Provides one-click deployment for Next.js, ensuring quick and reliable hosting. 
+
 ## Vision 🔍
 Our vision is to create a dynamic, collaborative space where:
 - **Knowledge** is freely shared.
