@@ -1,25 +1,29 @@
-import { useState } from "react";
-import { useContext } from 'react';
-import StickyDetails from "./stickyDetails";
+import { Inter } from "next/font/google";
 
 type StickyNotesProp = {
-    message: string;
-    noteId: string;
-    onClick: () => void;
-    style?: React.CSSProperties;
+
+  message: string;
+  noteId: string;
+  onClick: () => void;
+  style?: React.CSSProperties;
 };
 
+const inter = Inter({ weight: "400" })
+
 const StickyNote = ({ message, noteId, onClick, style }: StickyNotesProp) => {
-    return (
-        <div
-            className="p-5 shadow-[5px_5px_0_rgba(0,0,0,0.5)] bg-yellow-100 w-48 h-48 border-2 border-black rounded-lg text-black 
-                   flex items-center justify-center cursor-pointer overflow-hidden"
+  return (
+    <div
+      className="shadow-[5px_5px_0_rgba(0,0,0,0.5)] bg-yellow-100 w-48 h-48 border-2 border-black rounded-lg text-black 
+                   flex items-center justify-center cursor-pointer"
             onClick={onClick}
             style={style}   
-        >
-            {message}
-        </div>
-    );
+    >
+      <p className={`${inter.className} px-2 py-2`}>
+        {message}
+      </p>
+    </div>
+  );
+
 };
 
 export default StickyNote;
