@@ -17,145 +17,145 @@ import "@fontsource/covered-by-your-grace";
 import "@fontsource/rock-salt";
 
 type ExtraProps = {
-    columnCount: number,
+  columnCount: number,
 }
 
 const colorArray = ["#FFF68D", "#F79FD4", "#C59AF0", "#80E5FF", "#8FFFF0"];
 const fontArray = [
-    "'Rock Salt', cursive",
-    "'Architects Daughter', cursive",
-    "'Homemade Apple', sans-serfif",
-    "'Gloria Hallelujah', cursive",
-    "Arial, sans-serif",
-    "Verdana, sans-serif",
-    "Tahoma, sans-serif",
-    "Trebuchet MS, sans-serif",
-    "Helvetica, sans-serif",
+  "'Rock Salt', cursive",
+  "'Architects Daughter', cursive",
+  "'Homemade Apple', sans-serfif",
+  "'Gloria Hallelujah', cursive",
+  "Arial, sans-serif",
+  "Verdana, sans-serif",
+  "Tahoma, sans-serif",
+  "Trebuchet MS, sans-serif",
+  "Helvetica, sans-serif",
 ];
 
 const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) => {
-    const { notes, columnCount, handleNoteClick, selectedNote, setSelectedNoteColor, setSelectedNoteFont } = data;
+  const { notes, columnCount, handleNoteClick, selectedNote, setSelectedNoteColor, setSelectedNoteFont } = data;
 
-    const index = rowIndex * columnCount + columnIndex;
-    const noteData = notes[index];
+  const index = rowIndex * columnCount + columnIndex;
+  const noteData = notes[index];
 
-    const randomRotation = useMemo(() => Math.random() * 60 - 30, []);
-    const randomXOffset = useMemo(() => Math.random() * 100 - 25, []);
-    const randomYOffset = useMemo(() => Math.random() * 100 - 25, []);
-    const randomColor = useMemo(() => {
-        const randomIndex = Math.floor(Math.random() * colorArray.length);
-        return colorArray[randomIndex];
-    }, []);
-    const randomFont = useMemo(() => {
-        const randomIndex = Math.floor(Math.random() * fontArray.length);
-        return fontArray[randomIndex];
-    }, []);
+  const randomRotation = useMemo(() => Math.random() * 60 - 30, []);
+  const randomXOffset = useMemo(() => Math.random() * 100 - 25, []);
+  const randomYOffset = useMemo(() => Math.random() * 100 - 25, []);
+  const randomColor = useMemo(() => {
+    const randomIndex = Math.floor(Math.random() * colorArray.length);
+    return colorArray[randomIndex];
+  }, []);
+  const randomFont = useMemo(() => {
+    const randomIndex = Math.floor(Math.random() * fontArray.length);
+    return fontArray[randomIndex];
+  }, []);
 
-    const noteId = noteData?.id ?? index.toString();
+  const noteId = noteData?.id ?? index.toString();
 
-    let message = '';
+  let message = '';
 
-    if (notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) {
-        message = notes[rowIndex * columnCount + columnIndex].note;
-        if (message.length >= 100) {
-            message = message.slice(0, 100) + "...";
-        }
+  if (notes.length && ((rowIndex * columnCount) + columnIndex) < notes.length) {
+    message = notes[rowIndex * columnCount + columnIndex].note;
+    if (message.length >= 100) {
+      message = message.slice(0, 100) + "...";
     }
+  }
 
-    const handleClick = () => {
-        handleNoteClick(noteId);
-        setSelectedNoteColor(randomColor);
-        setSelectedNoteFont(randomFont);
-    };
+  const handleClick = () => {
+    handleNoteClick(noteId);
+    setSelectedNoteColor(randomColor);
+    setSelectedNoteFont(randomFont);
+  };
 
-    return (
-        <div
-            style={{
-                ...style,
-                transform: `translate(${randomXOffset}px, ${randomYOffset}px) rotate(${randomRotation}deg)`,
-            }}
-        >
-            <StickyNote
-                message={message}
-                noteId={noteId}
-                onClick={() => handleClick()}
-                style={{
-                    backgroundColor: randomColor,
-                    fontFamily: randomFont,
-                }}
-            />
-        </div>
-    );
+  return (
+    <div
+      style={{
+        ...style,
+        transform: `translate(${randomXOffset}px, ${randomYOffset}px) rotate(${randomRotation}deg)`,
+      }}
+    >
+      <StickyNote
+        message={message}
+        noteId={noteId}
+        onClick={() => handleClick()}
+        style={{
+          backgroundColor: randomColor,
+          fontFamily: randomFont,
+        }}
+      />
+    </div>
+  );
 
 };
 
 const StickyGrid = ({ notes }: DocumentData) => {
 
-    const [selectedNote, setSelectedNote] = useState<string | null>(null);
-    const [selectedNoteColor, setSelectedNoteColor] = useState<string>("");
-    const [selectedNoteFont, setSelectedNoteFont] = useState<string>("");
+  const [selectedNote, setSelectedNote] = useState<string | null>(null);
+  const [selectedNoteColor, setSelectedNoteColor] = useState<string>("");
+  const [selectedNoteFont, setSelectedNoteFont] = useState<string>("");
 
-    const handleNoteClick = (noteId: string) => {
-        if (selectedNote && selectedNote !== noteId) { //ignore clicks if it is from the same note
-            return;
-        }
-
-        setSelectedNote((prev) => (prev === noteId ? null : noteId));
-    };
-
-    //close note from x
-    const handleClose = () => {
-        setSelectedNote(null);
-    };
-
-    let note = "";
-    if (Number(selectedNote) < notes.length) {
-        note = notes[Number(selectedNote)].note;
+  const handleNoteClick = (noteId: string) => {
+    if (selectedNote && selectedNote !== noteId) { //ignore clicks if it is from the same note
+      return;
     }
 
-    return (
-        <div className="w-screen h-screen">
-            <AutoSizer>
-                {({ width, height }) => {
-                    const cellSize = 160;
-                    const columnCount = Math.floor(width / cellSize);
+    setSelectedNote((prev) => (prev === noteId ? null : noteId));
+  };
 
-                    return (
-                        <>
-                            <Grid
-                                columnCount={columnCount}
-                                rowCount={90909}
-                                columnWidth={160}
-                                rowHeight={160}
-                                width={width}
-                                height={height}
-                                itemData={{
-                                    notes,
-                                    columnCount,
-                                    handleNoteClick,
-                                    selectedNote,
-                                    setSelectedNoteColor,
-                                    setSelectedNoteFont,
-                                }}
-                            >
-                                {Cell}
-                            </Grid>
+  //close note from x
+  const handleClose = () => {
+    setSelectedNote(null);
+  };
 
-                            {selectedNote && (
-                                <StickyDetails
-                                    noteId={selectedNote}
-                                    onClose={handleClose}
-                                    color={selectedNoteColor}
-                                    font={selectedNoteFont}
-                                    data={note}
-                                />
-                            )}
-                        </>
-                    );
+  let note = "";
+  if (Number(selectedNote) < notes.length) {
+    note = notes[Number(selectedNote)].note;
+  }
+
+  return (
+    <div className="w-screen h-screen">
+      <AutoSizer>
+        {({ width, height }) => {
+          const cellSize = 160;
+          const columnCount = Math.floor(width / cellSize);
+
+          return (
+            <>
+              <Grid
+                columnCount={columnCount}
+                rowCount={90909}
+                columnWidth={160}
+                rowHeight={160}
+                width={width}
+                height={height}
+                itemData={{
+                  notes,
+                  columnCount,
+                  handleNoteClick,
+                  selectedNote,
+                  setSelectedNoteColor,
+                  setSelectedNoteFont,
                 }}
-            </AutoSizer>
-        </div>
-    );
+              >
+                {Cell}
+              </Grid>
+
+              {selectedNote && (
+                <StickyDetails
+                  noteId={selectedNote}
+                  onClose={handleClose}
+                  color={selectedNoteColor}
+                  font={selectedNoteFont}
+                  data={note}
+                />
+              )}
+            </>
+          );
+        }}
+      </AutoSizer>
+    </div>
+  );
 };
 
 export default StickyGrid;

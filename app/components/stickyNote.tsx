@@ -8,7 +8,7 @@ type StickyNotesProp = {
   style?: React.CSSProperties;
 };
 
-const inter = Inter({ weight: "400" })
+const inter = Inter({ weight: "400", subsets: ['latin'] })
 
 const StickyNote = ({ message, noteId, onClick, style }: StickyNotesProp) => {
   return (
