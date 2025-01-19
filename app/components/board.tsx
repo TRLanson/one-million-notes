@@ -2,7 +2,6 @@
 
 import { DocumentData } from "firebase/firestore";
 import StickyGrid from "./stickyGrid";
-import BoardCorner from "./boardCorner";
 
 type BoardProps = {
   notes: DocumentData[]
