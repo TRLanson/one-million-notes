@@ -1,33 +1,21 @@
 "use client";
 
-import { collection, DocumentData, getDocs, doc, onSnapshot } from "firebase/firestore";
+import { collection, DocumentData, onSnapshot } from "firebase/firestore";
 
 import { db } from "./components/Firebase";
 
 import { useEffect, useState } from 'react';
 
-import Image from "next/image";
-import StickyNote from "./components/stickyNote";
-import StickyGrid from "./components/stickyGrid";
-import TextBox from "./components/addNote";
 import Board from "./components/board";
 import MenuBar from "./components/menuBar";
-import StickyDetails from "./components/stickyDetails";
 
 export default function Home() {
 
   const [notes, setNotes] = useState<DocumentData[]>([]);
 
-  const fetchNotes = async () => {
-    const notesCollection = collection(db, 'StickyNotes');
-    const notesSnapshot = await getDocs(notesCollection);
-    const notesList = notesSnapshot.docs.map(doc => doc.data());
-    setNotes(notesList);
-  }
-
   const fetchNotesLive = async () => {
     const notesCollection = collection(db, 'StickyNotes');
-    const notesSnapshot = onSnapshot(notesCollection, (snapshot) => {
+    onSnapshot(notesCollection, (snapshot) => {
       const notesList = snapshot.docs.map(doc => doc.data());
       setNotes(notesList);
     });

@@ -7,7 +7,6 @@ import AutoSizer from "react-virtualized-auto-sizer";
 import StickyNote from "./stickyNote";
 import { DocumentData } from "firebase/firestore";
 import StickyDetails from "./stickyDetails";
-import { Inter, Roboto, Open_Sans, Lato, Montserrat, Noto_Sans, Ubuntu, Nunito, Raleway } from "next/font/google";
 
 
 import "@fontsource/architects-daughter";
@@ -15,10 +14,6 @@ import "@fontsource/homemade-apple";
 import "@fontsource/gloria-hallelujah";
 import "@fontsource/covered-by-your-grace";
 import "@fontsource/rock-salt";
-
-type ExtraProps = {
-  columnCount: number,
-}
 
 const colorArray = ["#FFF68D", "#F79FD4", "#C59AF0", "#80E5FF", "#8FFFF0"];
 const fontArray = [
@@ -34,7 +29,7 @@ const fontArray = [
 ];
 
 const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) => {
-  const { notes, columnCount, handleNoteClick, selectedNote, setSelectedNoteColor, setSelectedNoteFont } = data;
+  const { notes, columnCount, handleNoteClick, setSelectedNoteColor, setSelectedNoteFont } = data;
 
   const index = rowIndex * columnCount + columnIndex;
   const noteData = notes[index];
@@ -77,7 +72,6 @@ const Cell = ({ columnIndex, rowIndex, style, data }: GridChildComponentProps) =
     >
       <StickyNote
         message={message}
-        noteId={noteId}
         onClick={() => handleClick()}
         style={{
           backgroundColor: randomColor,
@@ -133,7 +127,6 @@ const StickyGrid = ({ notes }: DocumentData) => {
                   notes,
                   columnCount,
                   handleNoteClick,
-                  selectedNote,
                   setSelectedNoteColor,
                   setSelectedNoteFont,
                 }}
