@@ -31,14 +31,11 @@ Our vision is to create a dynamic, collaborative space where:
 **Database & Backend:**
 - Firebase Firestore
   - Real-time NoSQL database for storing and syncing notes seamlessly.
-- Node.js
-  - Runs the Next.js server and handles server-side logic.
 - Performance
   - react-window
     - Efficient rendering of large lists by only loading visible items.
 
 **Deployment**:
 - Vercel
-  - Provides one-click deployment for Next.js, ensuring quick and reliable hosting. 
-
+  - Provides easy deployment for Next.js
 **Together, let's open our perspectives and turn everyday moments into a global movement of connection and understanding.**
