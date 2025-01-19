@@ -13,12 +13,12 @@ const inter = Inter({ weight: "400" })
 const StickyNote = ({ message, noteId, onClick, style }: StickyNotesProp) => {
   return (
     <div
-      className="shadow-[5px_5px_0_rgba(0,0,0,0.5)] bg-yellow-100 w-48 h-48 border-2 border-black rounded-lg text-black 
-                   flex items-center justify-center cursor-pointer"
+      className="my-hand-element shadow-[5px_5px_0_rgba(0,0,0,0.5)] bg-yellow-100 w-48 h-48 border-2 border-black rounded-lg text-black 
+                   flex items-center justify-center cursor-pointer text-center"
             onClick={onClick}
             style={style}   
     >
-      <p className={`${inter.className} px-2 py-2`}>
+      <p className={`${inter.className} px-2 py-2`} style={{ fontFamily: style?.fontFamily }}>
         {message}
       </p>
     </div>

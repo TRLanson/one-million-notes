@@ -8,7 +8,18 @@
 }
 
 body {
+
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* <a href="https://www.flaticon.com/free-icons/stop" title="stop icons">Stop icons created by Stockio - Flaticon</a> */
+
+.my-hand-element {
+  cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.svg), auto;
+}
+
+.my-hand-element:hover {
+  cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.svg), auto;
 }
