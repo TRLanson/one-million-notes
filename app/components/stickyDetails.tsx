@@ -102,7 +102,7 @@ const StickyDetails = ({ noteId, onClose, color, font, data, length }: StickyDet
         :
         <div className="w-full h-full flex flex-col items-center">
           <textarea ref={textRef} style={{ backgroundColor: color }} className="text-wrap w-full h-4/6 md:h-5/6 align-text-top focus:outline-none placeholder-gray-800 text-2xl" placeholder={"Enter Text"} />
-          <button onClick={addNote} style={{ backgroundColor: color }} className="text-center mb-10 my-auto w-1/4 h-10 lg:h-20 border-2 border-black rounded-lg text-lg lg:text-3xl">
+          <button onClick={addNote} style={{ backgroundColor: color }} className="text-center mb-10 my-auto px-2 h-10 lg:h-20 border-2 border-black rounded-lg text-lg lg:text-3xl">
             Submit
           </ button>
         </ div>
