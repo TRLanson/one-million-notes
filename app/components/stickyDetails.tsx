@@ -43,7 +43,6 @@ const StickyDetails = ({ noteId, onClose, color, font, data, length }: StickyDet
         body: JSON.stringify({ text: message })
       });
       const result = await response.json();
-      console.log(result)
       return result.output.trim() === "true";
     } catch (error) {
       console.error("Error moderating message:", error);
