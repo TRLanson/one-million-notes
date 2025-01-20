@@ -25,6 +25,7 @@
     "@fontsource/source-sans-pro": "^5.1.0",
     "@fontsource/ubuntu": "^5.1.1",
     "@google/generative-ai": "^0.21.0",
+    "@vercel/analytics": "^1.4.1",
     "firebase": "^11.2.0",
     "next": "15.1.5",
     "react": "^19.0.0",

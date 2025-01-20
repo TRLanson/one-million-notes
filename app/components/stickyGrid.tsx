@@ -7,7 +7,6 @@ import AutoSizer from "react-virtualized-auto-sizer";
 import StickyNote from "./stickyNote";
 import { DocumentData } from "firebase/firestore";
 import StickyDetails from "./stickyDetails";
-import StickyCounter from "./stickyCounter";
 
 
 import "@fontsource/architects-daughter";
@@ -115,7 +114,6 @@ const StickyGrid = ({ notes }: DocumentData) => {
 
   return (
     <div className="w-screen h-screen">
-      <StickyCounter notes={notes} />
       <AutoSizer>
         {({ width, height }) => {
           const cellSize = 160;

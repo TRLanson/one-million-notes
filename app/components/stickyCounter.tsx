@@ -1,3 +1,5 @@
+"use client";
+
 import { DocumentData } from "firebase/firestore";
 
 type StickyCounterProps = {
@@ -6,8 +8,9 @@ type StickyCounterProps = {
 
 const StickyCounter = ({ notes }: StickyCounterProps) => {
   return (
-    <div className="fixed top-14 right-4 p-2">
-      <p className="text-3xl text-bold text-[#8B4513] "
+    <div className="md:fixed md:top-24 md:right-6 md:p-2
+      text-center">
+      <p className="text-base md:text-xl lg:text-3xl text-bold text-[#8B4513] "
       style={{ fontFamily: "'Futura', cursive"}}
       >
         #Notes: {notes.length}</p>

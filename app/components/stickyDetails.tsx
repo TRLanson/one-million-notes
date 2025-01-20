@@ -83,7 +83,8 @@ const StickyDetails = ({ noteId, onClose, color, font, data, length }: StickyDet
     <div
       className="z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
                  w-[min(80vw,80vh)] h-[min(80vw,80vh)] border-2 border-black rounded-lg 
-                 shadow-[10px_10px_0_rgba(0,0,0,0.5)] text-black p-6"
+                 shadow-[10px_10px_0_rgba(0,0,0,0.5)] text-black p-6
+                overflow-y-scroll"
       style={{ backgroundColor: color, fontFamily: font }}
     >
       <button
@@ -96,13 +97,13 @@ const StickyDetails = ({ noteId, onClose, color, font, data, length }: StickyDet
       <h2 className="text-xl font-bold mb-2">Note ID: {noteId}</h2>
       {data != "" ?
 
-        <p className="leading-relaxed text-xl">
+        <p className="leading-relaxed text-xl text-wrap break-words">
           {data}
         </p>
         :
         <div className="w-full h-full flex flex-col items-center">
-          <textarea ref={textRef} style={{ backgroundColor: color }} className="text-wrap w-full h-5/6 align-text-top focus:outline-none placeholder-gray-800 text-2xl" placeholder={"Enter Text"} />
-          <button onClick={addNote} style={{ backgroundColor: color }} className="w-1/4 h-20 border-2 border-black rounded-lg text-3xl">
+          <textarea ref={textRef} style={{ backgroundColor: color }} className="text-wrap w-full h-4/6 md:h-5/6 align-text-top focus:outline-none placeholder-gray-800 text-2xl" placeholder={"Enter Text"} />
+          <button onClick={addNote} style={{ backgroundColor: color }} className="text-center mb-10 my-auto w-1/4 h-10 lg:h-20 border-2 border-black rounded-lg text-lg lg:text-3xl">
             Submit
           </ button>
         </ div>
