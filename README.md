@@ -38,4 +38,5 @@ Our vision is to create a dynamic, collaborative space where:
 **Deployment**:
 - Vercel
   - Provides easy deployment for Next.js
+
 **Together, let's open our perspectives and turn everyday moments into a global movement of connection and understanding.**
